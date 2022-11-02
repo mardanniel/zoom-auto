@@ -9,7 +9,6 @@ export default defineConfig({
     {
       name: 'Chrome Manifest',
       generateBundle(option, bundle) {
-        
         this.emitFile({
           type: 'asset',
           fileName: 'manifest.json',
@@ -25,14 +24,14 @@ export default defineConfig({
     rollupOptions: {
       input: {
         'index': path.resolve(__dirname, 'src/index.html'),
-        'background': path.resolve(__dirname, 'src/background.js'),
+        'background': path.resolve(__dirname, 'src/background/background.js'),
       },
       output: {
         chunkFileNames: 'assets/[name].js',
         entryFileNames: 'assets/[name].js',
         assetFileNames: ({name}) => {
           if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')){
-            return 'assets/images/[name]-[hash][extname]';
+            return 'assets/images/[name][extname]';
           }
           return 'assets/[name][extname]'
         },
