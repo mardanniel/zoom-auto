@@ -1,8 +1,14 @@
 import { 
   createMemoryRouter 
 } from "react-router-dom";
-import Home, { loader as getLoader } from "./home";
+import CreateSchedule from "./create-schedule";
+import Home from "./home";
 import Root from "./root";
+import { 
+  createScheduleAction, 
+  deleteSchedulesAction, 
+  getSchedulesLoader 
+} from "../controller/schedule";
 
 export const router = createMemoryRouter([
   {
@@ -11,8 +17,17 @@ export const router = createMemoryRouter([
     children: [
       {
         index: true,
-        loader: getLoader,
+        loader: getSchedulesLoader,
         element: <Home />
+      },
+      {
+        path: 'create-schedule',
+        action: createScheduleAction,
+        element: <CreateSchedule />
+      },
+      {
+        path: 'clear-schedules',
+        action: deleteSchedulesAction
       }
     ]
   },
