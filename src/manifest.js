@@ -8,9 +8,18 @@ export const manifest = {
     "default_title": "Zoom Auto"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "alarms",
+    "tabs"
   ],
+  "icons": {
+    "16": "assets/images/vite.svg",
+    "32": "assets/images/vite.svg",
+    "48": "assets/images/vite.svg",
+    "128": "assets/images/vite.svg"
+  },
   "background": {
-    "service_worker": "assets/background.js"
+    "service_worker": "assets/background.js",
+    "type": "module"
   }
 }
