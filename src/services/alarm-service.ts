@@ -37,4 +37,4 @@ export const removeAlarm = async (title: string): Promise<boolean | chrome.runti
       : resolve(wasCleared)
     })
   })
-} 
+}

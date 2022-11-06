@@ -30,6 +30,12 @@ export const getMeeting = (meetingKey: string): Promise<Meetings> => {
   .catch((error) => error);
 }
 
+export const removeMeeting = async (meetingKey: string): Promise<boolean | string> => {
+  return chrome.storage.local.remove(meetingKey)
+  .then(() => true)
+  .catch((error) => error)
+}
+
 export const clearMeetings = async (): Promise<boolean | string> => {
   return chrome.storage.local.clear()
   .then(() => true)

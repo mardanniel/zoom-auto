@@ -1,11 +1,12 @@
-import { Button, Label, TextInput } from 'flowbite-react'
+import { Button, Label, Spinner, TextInput } from 'flowbite-react'
 import { HiArrowCircleLeft, HiPlusCircle } from 'react-icons/hi'
-import { Form, useLoaderData, useNavigate } from 'react-router-dom'
+import { Form, useLoaderData, useNavigate, useNavigation } from 'react-router-dom'
 import { MeetingByKey } from '../data/interfaces/meeting';
 import { getISOStringFromLong } from '../helpers/date-helper';
 
 export default function UpsertMeeting() {
   const navigate = useNavigate();
+  const navigation = useNavigation();
   const meeting = useLoaderData() as MeetingByKey;
   
   return (
@@ -31,7 +32,7 @@ export default function UpsertMeeting() {
           id="title"
           name='title'
           type="text"
-          required={false}
+          required={true}
           defaultValue={
             meeting && meeting.meetingKey 
             ? meeting.meetingContent?.schedule.title 
@@ -50,7 +51,7 @@ export default function UpsertMeeting() {
           id="description"
           name='description'
           type="text"
-          required={false}
+          required={true}
           defaultValue={
             meeting && meeting.meetingKey 
             ? meeting.meetingContent?.schedule.description 
@@ -70,7 +71,7 @@ export default function UpsertMeeting() {
           id="datetime"
           name='datetime'
           type="datetime-local"
-          required={false}
+          required={true}
           defaultValue={
             meeting && meeting.meetingKey 
             ? getISOStringFromLong(meeting.meetingContent!.schedule.datetime) 
@@ -96,7 +97,7 @@ export default function UpsertMeeting() {
             ? meeting.meetingContent?.schedule.link.url
             : ''
           }
-          required={false}
+          required={true}
         />
       </div>
       <div 
@@ -118,7 +119,13 @@ export default function UpsertMeeting() {
           pill={true} 
           color='success' 
           type='submit'>
-          Create
+          {
+            navigation.state === "submitting"
+            ? <Spinner size="sm" light={true} />
+            : meeting && meeting.meetingKey 
+            ? 'Update'
+            : 'Create'
+          }
           <HiPlusCircle 
             className="ml-2 h-5 w-5" />
         </Button>

@@ -1,7 +1,8 @@
-import { redirect } from "react-router-dom";
+import { LoaderFunction, redirect } from "react-router-dom";
 import { MeetingContent, Meetings } from "../data/interfaces/meeting";
 import { parseDateToLong } from "../helpers/date-helper";
-import { clearMeetings, upsertMeeting, getMeetings, getMeeting } from "../services/meetings-service";
+import { upsertAlarm } from "../services/alarm-service";
+import { clearMeetings, upsertMeeting, getMeetings, getMeeting, removeMeeting } from "../services/meetings-service";
 
 export const upsertMeetingAction = async ({ params, request }: any): Promise<Response | undefined> => {
   try {
@@ -29,6 +30,14 @@ export const upsertMeetingAction = async ({ params, request }: any): Promise<Res
         }
       }
     );
+
+    await upsertAlarm(
+      key!.toString(),
+      {
+        when: parseDateToLong(data.get('datetime')!.toString()),
+      }
+    )
+
     return redirect('/');
   }catch(error){
     console.error(error)
@@ -36,9 +45,7 @@ export const upsertMeetingAction = async ({ params, request }: any): Promise<Res
 }
 
 export const getMeetingLoader = async ({ params }: any) => {
-  console.log(`Params: ${params.itemId}`)
   let meeting = new Map(Object.entries(await getMeeting(params.itemId)));
-  console.log('The Meeting');
   console.log(meeting);
   
   return { 
@@ -49,9 +56,13 @@ export const getMeetingLoader = async ({ params }: any) => {
 
 export const getMeetingsLoader = async (): Promise<Meetings> => {
   let meetings = await getMeetings();
-  console.log('The Meetings');
-  console.log(meetings);
   return meetings;
+}
+
+export const removeMeetingAction = async ({ params }: any): Promise<Response> => {
+  console.log(params.itemId)
+  await removeMeeting(params.itemId);
+  return redirect("/");
 }
 
 export const deleteMeetingsAction = async (): Promise<Response> => {

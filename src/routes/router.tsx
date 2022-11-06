@@ -6,6 +6,7 @@ import {
   deleteMeetingsAction,
   getMeetingsLoader,
   getMeetingLoader,
+  removeMeetingAction,
 } from "../controller/meetings";
 
 import Index from "./Index";
@@ -23,15 +24,19 @@ export const router = createMemoryRouter([
         element: <MeetingList />
       },
       {
+        path: 'meeting/upsert',
+        action: upsertMeetingAction,
+        element: <UpsertMeeting />
+      },
+      {
         path: 'meeting/upsert/:itemId',
         action: upsertMeetingAction,
         loader: getMeetingLoader,
         element: <UpsertMeeting />
       },
       {
-        path: 'meeting/upsert',
-        action: upsertMeetingAction,
-        element: <UpsertMeeting />
+        path: 'meeting/remove/:itemId',
+        action: removeMeetingAction,
       },
       {
         path: 'meeting/clearAll',
