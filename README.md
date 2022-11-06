@@ -1,17 +1,13 @@
-## What is Zoom Auto?
+# ZoomAuto
 
-Zoom Auto is a chrome extension for Zoom meetings.
-
-## What did I use?
-
-- Vite
-- React
-- Tailwind
-- TypeScript
+ZoomAuto is a chrome extension for creating and *automatic launching of Zoom meeting schedules.
 
 ## Features
 
-- [X] CRUD schedules
-- [ ] Alarm
-- [ ] Auto-launch Zoom
+- [X] CRUD (Create, Read, Update, Delete) meeting functionality
+- [X] Automatically launch Zoom application based on zoom meeting schedule (Application links must be enabled)
 
+## Permissions
+- [chrome.alarms](https://developer.chrome.com/docs/extensions/reference/alarms)
+- [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage)
+- [chrome.tabs](https://developer.chrome.com/docs/extensions/reference/tabs)
