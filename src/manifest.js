@@ -19,10 +19,10 @@ export const manifest = {
     "tabs"
   ],
   "icons": {
-    "16": "assets/images/vite.svg",
-    "32": "assets/images/vite.svg",
-    "48": "assets/images/vite.svg",
-    "128": "assets/images/vite.svg"
+    "16": "assets/images/icons/zoom-auto.png",
+    "32": "assets/images/icons/zoom-auto.png",
+    "48": "assets/images/icons/zoom-auto.png",
+    "128": "assets/images/icons/zoom-auto.png"
   },
   "background": {
     "service_worker": "assets/background.js",
