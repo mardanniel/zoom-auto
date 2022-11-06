@@ -13,7 +13,8 @@ export const getLocaleDateStringFromLong = (date: number): string => {
 }
 
 export const getISOStringFromLong = (date: number): string => {
-  return new Date(date).toISOString().replace(/:\d+.\d+Z$/g, "");
+  let dateVar = new Date(date), pad = (num: number) => (num < 10 ? '0' : '') + num;
+  return `${dateVar.getFullYear()}-${pad(dateVar.getMonth() + 1)}-${pad(dateVar.getDate())}T${pad(dateVar.getHours())}:${pad(dateVar.getMinutes())}`
 }
 
 export const parseDateToLong = (dateString: string): number => {
