@@ -24,7 +24,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         'index': path.resolve(__dirname, 'src/index.html'),
-        'background': path.resolve(__dirname, 'src/background/background.js'),
+        'background': path.resolve(__dirname, 'src/background/background.ts'),
       },
       output: {
         chunkFileNames: 'assets/[name].js',
