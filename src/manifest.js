@@ -1,3 +1,9 @@
+/**
+ * Note: Any immediate changes to this file will not 
+ * reflect automatically to the actual build. Consider 
+ * a rerun of build.
+ */
+
 export const manifest = {
   "name": "Zoom Auto",
   "description": "Automatically open zoom meeting based on the list of schedules that you have.",

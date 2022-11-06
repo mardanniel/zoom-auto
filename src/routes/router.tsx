@@ -1,34 +1,46 @@
 import { 
   createMemoryRouter 
 } from "react-router-dom";
-import CreateSchedule from "./create-schedule";
-import Home from "./home";
-import Root from "./root";
 import { 
-  createScheduleAction, 
-  deleteSchedulesAction, 
-  getSchedulesLoader 
-} from "../controller/schedule";
+  upsertMeetingAction,
+  deleteMeetingsAction,
+  getMeetingsLoader,
+  getMeetingLoader,
+} from "../controller/meetings";
+
+import Index from "./Index";
+import MeetingList from "./MeetingList";
+import UpsertMeeting from "./UpsertMeeting";
 
 export const router = createMemoryRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Index />,
     children: [
       {
         index: true,
-        loader: getSchedulesLoader,
-        element: <Home />
+        loader: getMeetingsLoader,
+        element: <MeetingList />
       },
       {
-        path: 'create-schedule',
-        action: createScheduleAction,
-        element: <CreateSchedule />
+        path: 'meeting/upsert/:itemId',
+        action: upsertMeetingAction,
+        loader: getMeetingLoader,
+        element: <UpsertMeeting />
       },
       {
-        path: 'clear-schedules',
-        action: deleteSchedulesAction
-      }
+        path: 'meeting/upsert',
+        action: upsertMeetingAction,
+        element: <UpsertMeeting />
+      },
+      {
+        path: 'meeting/clearAll',
+        action: deleteMeetingsAction
+      },
     ]
   },
 ])
+
+/**
+ * bruh no optional parameters
+ */
