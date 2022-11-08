@@ -11,3 +11,8 @@ ZoomAuto is a chrome extension for creating and *automatic launching of Zoom mee
 - [chrome.alarms](https://developer.chrome.com/docs/extensions/reference/alarms)
 - [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage)
 - [chrome.tabs](https://developer.chrome.com/docs/extensions/reference/tabs)
+
+## To be added
+- Repeated meeting schedule
+- Tabs for upcoming, past and repeated meeting schedules
+- Linting
