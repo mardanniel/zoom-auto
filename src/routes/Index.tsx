@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import ZoomAutoIcon from '../assets/images/icons/zoom-auto.svg';
 
@@ -17,5 +18,5 @@ export default function Index() {
         <Outlet />
       </div>
     </>
-  )
+  );
 }

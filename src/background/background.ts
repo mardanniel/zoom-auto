@@ -1,17 +1,17 @@
-import { getMeeting } from "../services/meetings-service";
-import { openInNewTab } from "../services/tab-service";
+import { getMeeting } from '../api/meetings-api';
+import { openInNewTab } from '../api/tab-api';
 
 chrome.alarms.onAlarm.addListener(async (alarm) =>{
   try{
-    let meetingKey = alarm.name;
-    let meeting = new Map(Object.entries(await getMeeting(meetingKey)));
-    let meetingContent = meeting.get(meetingKey);
+    const meetingKey = alarm.name;
+    const meeting = new Map(Object.entries(await getMeeting(meetingKey)));
+    const meetingContent = meeting.get(meetingKey);
     openInNewTab({
       url: meetingContent?.schedule.link.url
     });
   }catch(e){
-    console.log(e);
+    console.error(e);
   }
 });
 
-export {}
+export {};

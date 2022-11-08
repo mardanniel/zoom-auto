@@ -1,4 +1,4 @@
-import { ZoomLink } from "./zoom-link"
+import { ZoomLink } from './zoom-link';
 
 export interface Schedule {
   title: string;
@@ -6,8 +6,3 @@ export interface Schedule {
   datetime: number;
   link: ZoomLink;
 }
-
-/**
- * To be added:
- * - Alarm
- */

@@ -15,4 +15,3 @@ ZoomAuto is a chrome extension for creating and *automatic launching of Zoom mee
 ## To be added
 - Repeated meeting schedule
 - Tabs for upcoming, past and repeated meeting schedules
-- Linting
