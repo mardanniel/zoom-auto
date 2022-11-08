@@ -1,9 +1,10 @@
-import { HiOutlineExternalLink, HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi'
-import { Form, Link } from 'react-router-dom'
-import { Meetings } from '../data/interfaces/meeting'
-import { getLocaleDateStringFromLong } from '../helpers/date-helper'
-import { openInNewTab } from '../services/tab-service'
-import ZoomIcon from '../assets/images/icons/zoomus-icon.svg'
+import React from 'react';
+import { HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi';
+import { Form, Link } from 'react-router-dom';
+import { Meetings } from '../data/interfaces/meeting';
+import { getLocaleDateStringFromLong } from '../utils/date';
+import { openInNewTab } from '../api/tab-api';
+import ZoomIcon from '../assets/images/icons/zoomus-icon.svg';
 
 export const Timeline = (props: { meetings: Meetings }) => {
   return (
@@ -11,7 +12,7 @@ export const Timeline = (props: { meetings: Meetings }) => {
       {Object.entries(props.meetings).map(([key, value]) => 
         <li className="mb-10 ml-8 w-[300px]" key={key}>            
           <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-white rounded-full dark:ring-gray-900 dark:bg-blue-900">
-            <svg aria-hidden="true" className="w-3 h-3 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+            <svg aria-hidden="true" className="w-3 h-3 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path></svg>
           </span>
           <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
             {value.schedule.title}
@@ -33,7 +34,7 @@ export const Timeline = (props: { meetings: Meetings }) => {
               url: value.schedule.link.url,
               active: true
             })}>
-            <img src={ZoomIcon} />
+            <img src={ZoomIcon} alt='Zoom Icon'/>
           </button>
           <Link
             to={`meeting/upsert/${key}`}
@@ -49,5 +50,5 @@ export const Timeline = (props: { meetings: Meetings }) => {
         </li>
       )}
     </ol>
-  )
-}
+  );
+};

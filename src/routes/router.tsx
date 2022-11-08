@@ -1,23 +1,26 @@
+import React from 'react';
 import { 
   createMemoryRouter 
-} from "react-router-dom";
+} from 'react-router-dom';
+
 import { 
   upsertMeetingAction,
   deleteMeetingsAction,
   getMeetingsLoader,
   getMeetingLoader,
   removeMeetingAction,
-} from "../controller/meetings";
+} from '../services/meeting-service';
 
-import Index from "./Index";
-import MeetingList from "./MeetingList";
-import UpsertMeeting from "./UpsertMeeting";
+import Index from './Index';
+import MeetingList from './MeetingList';
+import UpsertMeeting from './UpsertMeeting';
 
 export const router = createMemoryRouter([
   {
     path: '/',
     element: <Index />,
     children: [
+
       {
         index: true,
         loader: getMeetingsLoader,
@@ -44,8 +47,4 @@ export const router = createMemoryRouter([
       },
     ]
   },
-])
-
-/**
- * bruh no optional parameters
- */
+]);

@@ -1,13 +1,13 @@
+import React from 'react';
 import { Form, Link, useLoaderData } from 'react-router-dom';
 import { Timeline } from '../components/Timeline';
 import { Meetings } from '../data/interfaces/meeting';
 
-import { BsCalendarPlus } from 'react-icons/bs'
-import { MdDeleteSweep } from 'react-icons/md'
+import { BsCalendarPlus } from 'react-icons/bs';
+import { MdDeleteSweep } from 'react-icons/md';
 
 export default function MeetingList() {
-  let meetings = useLoaderData() as Meetings;
-
+  const meetings = useLoaderData() as Meetings;
   return (
     <>
       <div className="inline-flex rounded-md shadow-sm" role="group">
@@ -31,10 +31,10 @@ export default function MeetingList() {
       <div className='flex content-start pt-5'>
         {
           Object.keys(meetings).length
-          ? <Timeline meetings={meetings} />
-          : <h1 className='font-medium leading-tight text-xl mt-0 mb-2 text-blue-600'>You have no schedules!</h1>
+            ? <Timeline meetings={meetings} />
+            : <h1 className='font-medium leading-tight text-xl mt-0 mb-2 text-blue-600'>You have no schedules!</h1>
         }
       </div>
     </>
-  )
+  );
 }
