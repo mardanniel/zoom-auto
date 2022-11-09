@@ -31,7 +31,7 @@ export default defineConfig({
         entryFileNames: 'assets/[name].js',
         assetFileNames: ({name}) => {
           if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')){
-            return 'assets/images/[name][extname]';
+            return 'assets/images/icons/[name][extname]';
           }
           return 'assets/[name][extname]';
         },
