@@ -21,8 +21,6 @@ const DEFAULT_REQUIRED_KEYS = [
 export const upsertMeetingAction = async ({ params, request }: any): Promise<Response | object> => {
 
   const data: FormData = (await request.formData()) as FormData;
-  console.log('what is data here');
-  console.log(data.get('title'));
 
   const formValidation = formDataValidation(DEFAULT_REQUIRED_KEYS, data);
 
@@ -48,7 +46,6 @@ export const upsertMeetingAction = async ({ params, request }: any): Promise<Res
     });
     return redirect('/');
   }else{
-    console.log(formValidation);
     return formValidation;
   }  
 };

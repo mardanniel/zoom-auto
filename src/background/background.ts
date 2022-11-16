@@ -1,3 +1,4 @@
+import { redirect } from 'react-router-dom';
 import { getMeeting } from '../api/meetings-api';
 import { openInNewTab } from '../api/tab-api';
 
@@ -10,7 +11,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) =>{
       url: meetingContent?.schedule.link.url
     });
   }catch(e){
-    console.error(e);
+    redirect('/');
   }
 });
 
