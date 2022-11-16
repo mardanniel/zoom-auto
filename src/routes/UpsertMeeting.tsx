@@ -4,6 +4,8 @@ import { HiArrowCircleLeft, HiPlusCircle } from 'react-icons/hi';
 import { Form, useActionData, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { MeetingByKey } from '../data/interfaces/meeting';
 import { getISOStringFromLong } from '../utils/date';
+import DaysCheckbox from '../components/ScheduleInput';
+import ScheduleInput from '../components/ScheduleInput';
 
 export default function UpsertMeeting() {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ export default function UpsertMeeting() {
           required={false}
           defaultValue={
             meeting && meeting.meetingKey 
-              ? meeting.meetingContent?.schedule?.title 
+              ? meeting.meetingContent?.title 
               : ''
           }
           helperText={errors?.title ? <Error message={errors?.title}/> : null}
@@ -57,31 +59,10 @@ export default function UpsertMeeting() {
           required={false}
           defaultValue={
             meeting && meeting.meetingKey 
-              ? meeting.meetingContent?.schedule.description 
+              ? meeting.meetingContent.description 
               : ''
           }
           helperText={errors?.description ? <Error message={errors?.description}/> : null}
-        />
-      </div>
-      <div>
-        <div 
-          className="mb-2 block">
-          <Label
-            htmlFor="datetime"
-            value="Specify date and time"
-          />
-        </div>
-        <TextInput
-          id="datetime"
-          name='datetime'
-          type="datetime-local"
-          required={false}
-          defaultValue={
-            meeting && meeting.meetingKey 
-              ? getISOStringFromLong(meeting.meetingContent.schedule.datetime) 
-              : ''
-          }
-          helperText={errors?.datetime ? <Error message={errors?.datetime}/> : null}
         />
       </div>
       <div>
@@ -100,12 +81,15 @@ export default function UpsertMeeting() {
           pattern='https:\/\/[\w-]*\.?zoom.us\/(j|my)\/[\d\w?=-]+'
           defaultValue={
             meeting && meeting.meetingKey 
-              ? meeting.meetingContent?.schedule.link.url
+              ? meeting.meetingContent.link.url
               : ''
           }
           helperText={errors?.zoomlink ? <Error message={errors?.zoomlink}/> : null}
         />
       </div>
+      <ScheduleInput 
+        repeatDays={meeting && meeting.meetingKey ? meeting.meetingContent?.repeatDays : undefined}
+        datetime={meeting && meeting.meetingKey ? meeting.meetingContent.datetime : undefined}/>
       <div 
         className='flex flex-row content-center'>
         <Button 

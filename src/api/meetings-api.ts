@@ -41,3 +41,15 @@ export const clearMeetings = async (): Promise<boolean | string> => {
     .then(() => true)
     .catch((error) => error);
 };
+
+export const checkIfMeetingIdExist = (meetingKey: string): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get([meetingKey], (result) => {
+      chrome.runtime.lastError
+        ? reject(chrome.runtime.lastError)
+        : resolve(Object.keys(result).length > 0 ? true : false);
+    });
+  })
+    .then((value) => value as boolean)
+    .catch((error) => error);
+};

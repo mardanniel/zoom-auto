@@ -1,12 +1,20 @@
-export default function formDataValidation(keys: string[][], data: FormData): object {
-  const result: { [key:string]: string } = {};
+type RequiredMeetingValidationItems = {
+  title: string,
+  description: string,
+  zoomlink: string
+};
 
-  keys.forEach((value) => {
-    const dataVal = data.get(value[1]);
+export default function formDataValidation(keys: RequiredMeetingValidationItems, data: FormData): object {
+  const result: { [key:string]: string } = {};
+  
+  for (const [inputName, inputTitle] of Object.entries(keys)) {
+    const dataVal = data.get(inputName);
     if (dataVal === null || dataVal.toString() === ''){
-      result[value[1]] = `${value[0]} is required.`;
+      result[inputName] = `${inputTitle} is required.`;
     }
-  });
+  }
+
+  console.log(result);
 
   return result;
 }

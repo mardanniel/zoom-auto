@@ -1,0 +1,25 @@
+.weekdays {
+  display: flex;
+  justify-content: space-around;
+}
+
+.weekdays-item input {
+  display: none!important;
+}
+
+.weekdays-item input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  width: 30px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekdays-item input[type=checkbox]:checked + label {
+  background: rgb(37 99 235);
+  color: #ffffff;
+}
